@@ -6,6 +6,12 @@ import type { Achievement } from '../types/content';
  */
 export const achievements: Achievement[] = [
   {
+    event: 'ETHGlobal Mumbai · Arkiv',
+    result: '1st Winner',
+    context: 'Took first place at ETHGlobal Mumbai with Arkiv.',
+    highlight: true,
+  },
+  {
     event: 'Bitcoin Global Hackathon',
     result: 'Top 4 globally',
     context: 'Finished in the global top four at the Bitcoin Global Hackathon.',

@@ -18,10 +18,10 @@ export const profile: Profile = {
   resumeUrl: '/resume.pdf',
   bio: 'Third-year Computer Science student at Chennai Institute of Technology, building at the intersection of AI, blockchain and crypto. Hands-on with real-time AI, smart contracts and full-stack products, a multi-time hackathon finalist and winner who also contributes to open source.',
   proof: [
+    'ETHGlobal Mumbai — 1st place',
     'Top 4 — Bitcoin Global Hackathon',
     '2x Solana runner-up',
     'BNB Greenfield winner',
-    '8.1 CGPA',
   ],
   stats: [
     { value: 10, suffix: '+', label: 'Hackathon podiums & finalist spots' },

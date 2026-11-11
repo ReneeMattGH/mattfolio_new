@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Eye } from 'lucide-react';
 import { useLayoutEffect, useRef } from 'react';
 import type { Project } from '../types/content';
 import { gsap } from '../lib/gsap';
@@ -131,6 +131,17 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
             <ProjectPreview project={project} />
           </div>
         </div>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-black/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-3 top-3 z-[3] inline-flex items-center gap-1.5 rounded-chip border border-[rgba(255,255,255,0.14)] bg-[rgba(10,10,10,0.55)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-ink backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
+        >
+          <Eye size={11} className="text-accent" />
+          Preview
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
@@ -262,6 +273,17 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
               <ProjectPreview project={project} />
             </div>
           </div>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-black/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-4 top-4 z-[3] inline-flex items-center gap-1.5 rounded-chip border border-[rgba(255,255,255,0.14)] bg-[rgba(10,10,10,0.55)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-ink backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
+          >
+            <Eye size={11} className="text-accent" />
+            Preview
+          </span>
         </div>
       </div>
     </article>
