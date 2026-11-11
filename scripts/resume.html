@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>George Kingsley Renee Matthew — Resume</title>
+<style>
+  @font-face { font-family: 'Geist'; src: url('./fonts/geist.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Geist Mono'; src: url('./fonts/geist-mono.woff2') format('woff2'); font-weight: 100 900; }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Geist', sans-serif;
+    font-size: 9.6px;
+    line-height: 1.52;
+    -webkit-font-smoothing: antialiased;
+    padding: 13mm 14mm 10mm;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: #1a1a1a; text-decoration: none; }
+  .mono { font-family: 'Geist Mono', monospace; }
+  header { border-bottom: 1.5px solid #1a1a1a; padding-bottom: 5mm; margin-bottom: 5mm; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10mm; }
+  h1 { font-size: 25px; line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; }
+  .role { margin-top: 2.4mm; font-size: 10.4px; color: #4a4a4a; letter-spacing: -0.01em; }
+  .contact { text-align: right; font-size: 8.2px; line-height: 1.85; color: #4a4a4a; white-space: nowrap; }
+  .contact .accent { color: #1a1a1a; font-weight: 500; }
+  .summary { margin-top: 4mm; max-width: 150mm; color: #4a4a4a; font-size: 9px; line-height: 1.6; }
+  .body { display: grid; grid-template-columns: 1fr 62mm; gap: 8mm; flex: 1; }
+  h2 {
+    font-family: 'Geist Mono', monospace;
+    font-size: 7.6px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    font-weight: 500;
+    border-bottom: 0.5px solid #d8d8d8;
+    padding-bottom: 1.6mm;
+    margin-bottom: 3mm;
+  }
+  section + section { margin-top: 5mm; }
+  .job { margin-bottom: 4mm; break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; gap: 4mm; align-items: baseline; }
+  .job-company { font-weight: 600; font-size: 10px; letter-spacing: -0.01em; }
+  .job-title { color: #4a4a4a; font-size: 8.8px; margin-top: 0.3mm; }
+  .job-dates { font-family: 'Geist Mono', monospace; font-size: 7.4px; color: #8a8a8a; letter-spacing: 0.03em; white-space: nowrap; }
+  ul { list-style: none; margin-top: 1.6mm; }
+  li { position: relative; padding-left: 3.2mm; margin-bottom: 1mm; color: #3f3f3f; font-size: 9px; line-height: 1.52; }
+  li::before { content: ''; position: absolute; left: 0; top: 2.05mm; width: 1.6mm; height: 0.35px; background: #b0b0b0; }
+  .project { margin-bottom: 3mm; break-inside: avoid; }
+  .project-head { display: flex; align-items: baseline; gap: 2mm; flex-wrap: wrap; }
+  .project-title { font-weight: 600; font-size: 9.2px; }
+  .project-tag { font-family: 'Geist Mono', monospace; font-size: 6.8px; letter-spacing: 0.05em; text-transform: uppercase; color: #8a8a8a; }
+  .project p { color: #4a4a4a; font-size: 8.7px; line-height: 1.52; margin-top: 0.6mm; }
+  .stack { font-family: 'Geist Mono', monospace; font-size: 6.9px; color: #767676; margin-top: 0.8mm; letter-spacing: 0.02em; }
+  .side-block + .side-block { margin-top: 5mm; }
+  .edu + .edu { margin-top: 2.6mm; }
+  .edu-title { font-weight: 600; font-size: 8.8px; }
+  .edu-sub { color: #4a4a4a; font-size: 8px; margin-top: 0.2mm; line-height: 1.45; }
+  .edu-meta { font-family: 'Geist Mono', monospace; font-size: 7px; color: #8a8a8a; margin-top: 0.6mm; letter-spacing: 0.03em; }
+  .award { display: flex; justify-content: space-between; gap: 2mm; padding: 1.15mm 0; border-bottom: 0.5px solid #ececec; font-size: 8px; }
+  .award:last-child { border-bottom: 0; }
+  .award-name { color: #2f2f2f; }
+  .award-result { font-family: 'Geist Mono', monospace; font-size: 6.8px; color: #6f6f6f; text-align: right; letter-spacing: 0.02em; white-space: nowrap; }
+  .skill-group { margin-bottom: 2.2mm; }
+  .skill-label { font-family: 'Geist Mono', monospace; font-size: 6.9px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8a8a; }
+  .skill-items { font-size: 8.1px; color: #2f2f2f; margin-top: 0.4mm; line-height: 1.45; }
+  footer { margin-top: 3.5mm; padding-top: 2.4mm; border-top: 0.5px solid #d8d8d8; display: flex; justify-content: space-between; font-family: 'Geist Mono', monospace; font-size: 6.8px; color: #9a9a9a; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div>
+        <h1>George Kingsley<br/>Renee Matthew</h1>
+        <div class="role">Blockchain and full-stack engineer · Chennai / Remote</div>
+      </div>
+      <div class="contact">
+        <div><span class="accent">renee.matthew04@gmail.com</span></div>
+        <div>github.com/ReneeMattGH</div>
+        <div>linkedin.com/in/renee-matthew-673141263</div>
+        <div>x.com/0xmattchain</div>
+      </div>
+    </div>
+    <p class="summary">Third-year Computer Science student at Chennai Institute of Technology, building at the intersection of AI, blockchain and crypto. Hands-on with real-time AI, smart contracts and full-stack products. Multi-time hackathon finalist and winner; open-source contributor.</p>
+  </header>
+
+  <div class="body">
+    <div class="main">
+      <section>
+        <h2>Experience</h2>
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <div class="job-company">ROYALGCC</div>
+              <div class="job-title">Backend and Blockchain Developer · Remote</div>
+            </div>
+            <div class="job-dates">Jan 2026 — Mar 2026</div>
+          </div>
+          <ul>
+            <li>Built a full-stack platform where users deposit USDT, manage an internal wallet and convert crypto to INR with automated payouts.</li>
+            <li>Built Node.js and PostgreSQL/Supabase APIs for authentication, transactions and wallet balances.</li>
+            <li>Implemented real-time blockchain transaction tracking, external wallet withdrawals and ledger-based accounting.</li>
+            <li>Added KYC verification, OTP authentication, banking integrations and an admin dashboard.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <div class="job-company">ZERO2SITE</div>
+              <div class="job-title">Blockchain Developer · Chennai</div>
+            </div>
+            <div class="job-dates">Jan 2025 — Present</div>
+          </div>
+          <ul>
+            <li>Developed and deployed smart contracts with Solidity and Hardhat.</li>
+            <li>Integrated blockchain features with React.js frontends and Node.js backends.</li>
+            <li>Collaborated with cross-functional teams on fiat-to-crypto processing chains.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <div class="job-company">GOLDEN OPULENCE</div>
+              <div class="job-title">Intern, Electoral Committee · Chennai</div>
+            </div>
+            <div class="job-dates">May 2025 — Jul 2025</div>
+          </div>
+          <ul>
+            <li>Supported committee operations and documentation.</li>
+            <li>Handled data management and reporting.</li>
+            <li>Maintained databases with a focus on data consistency.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Selected Projects</h2>
+        <div class="project">
+          <div class="project-head"><span class="project-title">HAVX</span><span class="project-tag">Flagship · In development</span></div>
+          <p>A blockchain-native IDE and wallet for writing, managing and shipping on-chain software from one surface.</p>
+          <div class="stack">TypeScript · React · Node.js · Solidity · Web3.js</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">BNB Greenfield AI Dataset Marketplace</span><span class="project-tag">Greenfield Winner</span></div>
+          <p>A decentralized marketplace for managing, licensing and sharing AI datasets on BNB Greenfield.</p>
+          <div class="stack">BNB Greenfield · Solidity · TypeScript · React</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">BitLend</span><span class="project-tag">Best Idea Implemented</span></div>
+          <p>Decentralized crypto lending with real-time, wallet-based lending and on-chain credit control.</p>
+          <div class="stack">Solidity · TypeScript · React · Wallet auth</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">Offramp Payroll</span><span class="project-tag">Fintech</span></div>
+          <p>A full-stack USDT payroll off-ramp for companies, from batch payouts to local-currency settlement.</p>
+          <div class="stack">Node.js · PostgreSQL · Supabase · React</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">Brikx</span><span class="project-tag">Top 10 finalist</span></div>
+          <p>Real-estate and real-world-asset tokenization for fractional property ownership.</p>
+          <div class="stack">Solidity · TypeScript · React</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">MannaPay</span><span class="project-tag">Bitcoin L2</span></div>
+          <p>A Bitcoin-powered subscription hub on Layer-2, built for recurring payments without card rails.</p>
+          <div class="stack">Bitcoin L2 · TypeScript · React</div>
+        </div>
+        <div class="project">
+          <div class="project-head"><span class="project-title">BlockVault</span><span class="project-tag">Open source</span></div>
+          <p>A decentralized wallet-gated vault for passwords and personal data, controlled by the holder.</p>
+          <div class="stack">TypeScript · React · Wallet auth</div>
+        </div>
+        <p class="stack" style="margin-top:3.2mm; line-height:1.7">More: InvoPay, SolAI, GeoTrade, Zerohour, Smart Health, Trading Bot.</p>
+      </section>
+    </div>
+
+    <aside class="side">
+      <div class="side-block">
+        <h2>Education</h2>
+        <div class="edu">
+          <div class="edu-title">B.E. Computer Science Engineering</div>
+          <div class="edu-sub">Chennai Institute of Technology</div>
+          <div class="edu-meta">2024 — 2028 · 8.1 CGPA</div>
+        </div>
+        <div class="edu">
+          <div class="edu-title">Computer Science and Mathematics</div>
+          <div class="edu-sub">Adarsh Vidya Kendra, Nagercoil</div>
+          <div class="edu-meta">2022 — 2024 · 80%</div>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h2>Achievements</h2>
+        <div class="award"><span class="award-name">Bitcoin Global Hackathon</span><span class="award-result">Top 4 globally</span></div>
+        <div class="award"><span class="award-name">Solana Colosseum</span><span class="award-result">2nd Runner Up</span></div>
+        <div class="award"><span class="award-name">Solana Solar Hackathon</span><span class="award-result">2nd Runner Up</span></div>
+        <div class="award"><span class="award-name">BNB Hackathon 2025</span><span class="award-result">Greenfield Winner</span></div>
+        <div class="award"><span class="award-name">BeachHack S7</span><span class="award-result">Best Idea</span></div>
+        <div class="award"><span class="award-name">Ideathon (Brikx)</span><span class="award-result">2nd Runner Up</span></div>
+        <div class="award"><span class="award-name">GDG Hackathon</span><span class="award-result">Top 8</span></div>
+        <div class="award"><span class="award-name">IIT Blockchain Hackathon</span><span class="award-result">Top 10 finalist</span></div>
+        <div class="award"><span class="award-name">IIT Smart Hostel</span><span class="award-result">Top 20</span></div>
+      </div>
+
+      <div class="side-block">
+        <h2>Skills</h2>
+        <div class="skill-group">
+          <div class="skill-label">Blockchain</div>
+          <div class="skill-items">Solidity, Hardhat, Ethereum, Solana, Web3.js, Ethers.js, IPFS, ERC-1155</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Languages</div>
+          <div class="skill-items">C, C++, Python, JavaScript, TypeScript, Java</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Web and Data</div>
+          <div class="skill-items">React, Node.js, Express, MongoDB, PostgreSQL / Supabase, REST APIs</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">AI and Tools</div>
+          <div class="skill-items">LLM building, AI agents, market-analysis models, GitHub, Linux</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <span>George Kingsley Renee Matthew · Resume</span>
+    <span>Updated November 2026</span>
+  </footer>
+</body>
+</html>

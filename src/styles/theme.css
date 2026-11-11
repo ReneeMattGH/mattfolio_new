@@ -1,0 +1,38 @@
+/* Single source of truth for the portfolio design tokens. */
+:root {
+  --bg: #141414;
+  --surface: #191919;
+  --surface-2: #1f1f1f;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --text: #ededed;
+  --text-muted: #9a9a9a;
+  --text-faint: #6b6b6b;
+
+  --accent: #8fb4ff;
+  --accent-ink: #0b0b0b;
+
+  --inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --hover-wash: rgba(255, 255, 255, 0.03);
+  --spotlight: rgba(255, 255, 255, 0.05);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-ui: 240ms;
+  --dur-reveal: 900ms;
+
+  --shell: 1200px;
+  --gutter: 16px;
+  --section-y: 80px;
+  --nav-h: 72px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 24px;
+    --section-y: 128px;
+  }
+}

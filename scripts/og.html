@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: 'Geist'; src: url('./fonts/geist.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Geist Mono'; src: url('./fonts/geist-mono.woff2') format('woff2'); font-weight: 100 900; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: #141414;
+    color: #ededed;
+    font-family: 'Geist', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow: hidden;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 90% 80% at 40% 40%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 40% 40%, #000 30%, transparent 100%);
+  }
+  .glow {
+    position: absolute; width: 620px; height: 620px; right: -80px; top: -140px;
+    background: radial-gradient(circle, rgba(143,180,255,0.10), transparent 62%);
+  }
+  .frame { position: absolute; inset: 24px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; }
+  .content { position: absolute; left: 72px; top: 58px; bottom: 58px; width: 690px; display: flex; flex-direction: column; }
+  .kicker { display: flex; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9a9a9a; }
+  .dot { width: 6px; height: 6px; border-radius: 999px; background: #8fb4ff; box-shadow: 0 0 0 4px rgba(143,180,255,0.10); }
+  h1 {
+    margin-top: 46px;
+    font-size: 74px;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    text-wrap: balance;
+    max-width: 680px;
+  }
+  h1 em { font-style: normal; display: block; color: #9a9a9a; }
+  .role { margin-top: 26px; font-size: 19px; line-height: 1.55; color: #9a9a9a; max-width: 540px; }
+  .proof {
+    margin-top: auto;
+    display: flex; gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+    width: 680px;
+  }
+  .proof div { flex: 1; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b6b6b; line-height: 1.5; }
+  .proof div span { display: block; color: #ededed; margin-bottom: 4px; }
+  .art { position: absolute; right: 58px; top: 118px; width: 360px; height: 400px; }
+  .caption { position: absolute; right: 72px; bottom: 58px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #6b6b6b; text-align: right; line-height: 1.7; }
+  .caption b { color: #ededed; font-weight: 400; }
+  .mark { position: absolute; left: 72px; top: 0; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grid"></div>
+  <div class="frame"></div>
+
+  <div class="content">
+    <div class="kicker"><span class="dot"></span> George Kingsley Renee Matthew · Matt</div>
+    <h1>Blockchain and full-stack engineer.<em>Secure payment, DeFi and AI systems.</em></h1>
+    <p class="role">Building at the intersection of AI, blockchain and crypto. Hackathon winner and multi-time finalist.</p>
+    <div class="proof">
+      <div><span>Top 4</span>Bitcoin Global Hackathon</div>
+      <div><span>2×</span>Solana runner-up</div>
+      <div><span>Winner</span>BNB Greenfield</div>
+      <div><span>8.1</span>CGPA</div>
+    </div>
+  </div>
+
+  <svg class="art" viewBox="0 0 360 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#242424"/><stop offset="1" stop-color="#161616"/>
+      </linearGradient>
+      <linearGradient id="rim" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#8fb4ff" stop-opacity="0.9"/><stop offset="1" stop-color="#8fb4ff" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g stroke="rgba(255,255,255,0.12)" stroke-width="1">
+      <path d="M84 104 L180 72 L276 104 L276 200 L180 232 L84 200 Z" fill="url(#face)"/>
+      <path d="M180 232 L276 200 L276 304 L180 336 Z" fill="#1b1b1b"/>
+      <path d="M84 200 L180 232 L180 336 L84 304 Z" fill="#181818"/>
+      <path d="M84 200 L84 304" stroke="url(#rim)" stroke-width="2"/>
+    </g>
+    <g stroke="rgba(255,255,255,0.12)" stroke-width="1">
+      <path d="M196 262 L292 230 L388 262 L388 358 L292 390 L196 358 Z" fill="url(#face)" opacity="0.92"/>
+      <path d="M292 390 L388 358 L388 462 L292 494 Z" fill="#1b1b1b" opacity="0.9"/>
+      <path d="M196 358 L292 390 L292 494 L196 462 Z" fill="#181818" opacity="0.9"/>
+      <path d="M292 262 L292 390" stroke="rgba(143,180,255,0.35)"/>
+    </g>
+    <g stroke="rgba(143,180,255,0.45)" stroke-width="1.25">
+      <path d="M150 208 C182 222, 220 240, 254 264" stroke-dasharray="4 6"/>
+      <circle cx="150" cy="208" r="3.5" fill="#8fb4ff" stroke="none"/>
+      <circle cx="254" cy="264" r="3.5" fill="#8fb4ff" stroke="none"/>
+    </g>
+    <circle cx="60" cy="80" r="1.4" fill="#fff" opacity="0.28"/>
+    <circle cx="318" cy="66" r="1.2" fill="#fff" opacity="0.22"/>
+    <circle cx="40" cy="330" r="1" fill="#fff" opacity="0.18"/>
+  </svg>
+
+  <div class="caption"><b>Chennai / Remote</b><br/>github.com/ReneeMattGH<br/>renee.matthew04@gmail.com</div>
+</body>
+</html>
