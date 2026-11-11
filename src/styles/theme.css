@@ -1,22 +1,25 @@
 /* Single source of truth for the portfolio design tokens. */
 :root {
-  --bg: #141414;
-  --surface: #191919;
-  --surface-2: #1f1f1f;
+  --bg: #16171b;
+  --surface: #1c1e24;
+  --surface-2: #23262d;
 
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
   --text: #ededed;
-  --text-muted: #9a9a9a;
-  --text-faint: #6b6b6b;
+  --text-muted: #9d9d9d;
+  --text-faint: #747474;
 
   --accent: #8fb4ff;
   --accent-ink: #0b0b0b;
+  --mint: #8fe3c0;
+  --gold: #f2c78f;
+  --iris: #b9a8ff;
 
-  --inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  --hover-wash: rgba(255, 255, 255, 0.03);
-  --spotlight: rgba(255, 255, 255, 0.05);
+  --inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --hover-wash: rgba(255, 255, 255, 0.035);
+  --spotlight: rgba(255, 255, 255, 0.055);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);

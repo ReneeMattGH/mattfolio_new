@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { projects } from '../data/projects';
 import { startScroll, stopScroll } from '../lib/scroll';
+import { palette, projectTone } from '../lib/tones';
 import type { Project } from '../types/content';
 import { Magnetic } from './Magnetic';
 import { ProjectPreview } from './ProjectPreview';
@@ -66,6 +67,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (typeof document === 'undefined') return null;
 
   const index = project ? projects.findIndex((item) => item.id === project.id) + 1 : 0;
+  const tone = project ? projectTone(project) : palette.blue;
+  const badgeTone = project && /winner|best/i.test(project.badge ?? '') ? palette.gold : tone;
 
   return createPortal(
     <AnimatePresence>
@@ -94,6 +97,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 flex max-h-[92svh] w-full max-w-[920px] flex-col overflow-hidden rounded-t-[16px] border border-line bg-surface sm:rounded-card"
           >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px"
+              style={{ background: `linear-gradient(90deg, ${tone}, transparent 62%)` }}
+            />
             <div className="flex shrink-0 items-center justify-between gap-4 border-b border-line px-5 py-4 md:px-8">
               <span className="mono-label truncate">
                 Case study · {project.categories[0]}
@@ -128,8 +136,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </h2>
                   </div>
                   {project.badge ? (
-                    <span className="hidden shrink-0 items-center gap-1.5 rounded-chip border border-accent/25 bg-accent/[0.06] px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.06em] text-accent sm:inline-flex">
-                      <span className="h-1 w-1 rounded-full bg-accent" />
+                    <span
+                      className="hidden shrink-0 items-center gap-1.5 rounded-chip border px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.06em] sm:inline-flex"
+                      style={{
+                        borderColor: `${badgeTone}40`,
+                        backgroundColor: `${badgeTone}14`,
+                        color: badgeTone,
+                      }}
+                    >
+                      <span
+                        className="h-1 w-1 rounded-full"
+                        style={{ backgroundColor: badgeTone }}
+                      />
                       {project.badge}
                     </span>
                   ) : null}

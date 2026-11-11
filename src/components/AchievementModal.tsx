@@ -3,6 +3,7 @@ import { Award, Medal, Trophy, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { startScroll, stopScroll } from '../lib/scroll';
+import { palette } from '../lib/tones';
 import type { Achievement } from '../types/content';
 
 interface AchievementModalProps {
@@ -14,9 +15,10 @@ const focusableSelector =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
 function toneFor(result: string) {
-  if (/winner|best/i.test(result)) return { label: 'Winner', Icon: Trophy };
-  if (/runner/i.test(result)) return { label: 'Runner-up', Icon: Medal };
-  return { label: 'Finalist', Icon: Award };
+  if (/winner|best/i.test(result))
+    return { label: 'Winner', Icon: Trophy, hue: palette.gold };
+  if (/runner/i.test(result)) return { label: 'Runner-up', Icon: Medal, hue: palette.blue };
+  return { label: 'Finalist', Icon: Award, hue: palette.mint };
 }
 
 export function AchievementModal({ achievement, onClose }: AchievementModalProps) {
@@ -91,11 +93,15 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.995 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 w-full max-w-[620px] overflow-hidden rounded-t-[16px] border border-[rgba(143,180,255,0.28)] bg-surface sm:rounded-card"
+            style={{ borderColor: `${tone.hue}47` }}
+            className="relative z-10 w-full max-w-[620px] overflow-hidden rounded-t-[16px] border bg-surface sm:rounded-card"
           >
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[rgba(143,180,255,0.9)] via-[rgba(143,180,255,0.3)] to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 h-px"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${tone.hue}, ${tone.hue}40 55%, transparent)`,
+              }}
             />
 
             <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4 md:px-8">
@@ -115,19 +121,30 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
 
             <div className="p-6 md:p-8">
               <div className="flex items-start gap-5">
-                <span className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[rgba(143,180,255,0.35)] bg-[rgba(143,180,255,0.07)] text-accent">
+                <span
+                  className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border"
+                  style={{
+                    borderColor: `${tone.hue}59`,
+                    backgroundColor: `${tone.hue}12`,
+                    color: tone.hue,
+                  }}
+                >
                   <tone.Icon size={26} strokeWidth={1.4} aria-hidden="true" />
                   <span
                     aria-hidden="true"
-                    className="absolute -inset-1.5 rounded-full border border-dashed border-[rgba(143,180,255,0.2)]"
+                    className="absolute -inset-1.5 rounded-full border border-dashed"
+                    style={{ borderColor: `${tone.hue}33` }}
                   />
                 </span>
 
                 <div className="min-w-0">
-                  <span className="kicker text-accent">{tone.label}</span>
+                  <span className="kicker" style={{ color: tone.hue }}>
+                    {tone.label}
+                  </span>
                   <h2
                     id="achievement-title"
-                    className="mt-2 text-[clamp(1.9rem,4.5vw,2.9rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-accent"
+                    style={{ color: tone.hue }}
+                    className="mt-2 text-[clamp(1.9rem,4.5vw,2.9rem)] font-semibold leading-[0.98] tracking-[-0.045em]"
                   >
                     {achievement.result}
                   </h2>

@@ -11,6 +11,7 @@ import { Reveal } from '../components/Reveal';
 import { SectionHeader } from '../components/SectionHeader';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { skillGroups, softSkills, toolMarquee } from '../data/skills';
+import { palette } from '../lib/tones';
 import type { SkillIconKey } from '../types/content';
 
 const icons: Record<SkillIconKey, LucideIcon> = {
@@ -19,6 +20,14 @@ const icons: Record<SkillIconKey, LucideIcon> = {
   globe: Globe2,
   brain: BrainCircuit,
   wrench: Wrench,
+};
+
+const groupTones: Record<string, string> = {
+  Blockchain: palette.blue,
+  Languages: palette.gold,
+  'Web and Data': palette.mint,
+  AI: palette.iris,
+  Tools: '#a0a3ad',
 };
 
 export function Skills() {
@@ -40,6 +49,7 @@ export function Skills() {
         <div className="grid gap-4 md:grid-cols-12">
           {skillGroups.map((group, index) => {
             const Icon = icons[group.icon];
+            const tone = groupTones[group.label] ?? palette.blue;
             return (
               <Reveal
                 key={group.label}
@@ -52,14 +62,19 @@ export function Skills() {
                       <Icon
                         size={16}
                         strokeWidth={1.5}
-                        className="text-accent"
+                        style={{ color: tone }}
                         aria-hidden="true"
                       />
                       <h3 className="text-[16px] font-medium leading-none tracking-[-0.02em] text-ink">
                         {group.label}
                       </h3>
                     </div>
-                    <span className="font-mono text-[10px] tabular text-faint">
+                    <span className="flex items-center gap-2 font-mono text-[10px] tabular text-faint">
+                      <span
+                        aria-hidden="true"
+                        className="h-1 w-1 rounded-full"
+                        style={{ backgroundColor: tone }}
+                      />
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>

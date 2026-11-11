@@ -8,6 +8,7 @@ import { SectionHeader } from '../components/SectionHeader';
 import { Tilt } from '../components/Tilt';
 import { categories, experiments, projects } from '../data/projects';
 import { FILTER_PROJECTS_EVENT, OPEN_PROJECT_EVENT } from '../lib/siteEvents';
+import { categoryTones } from '../lib/tones';
 import { cn } from '../lib/utils';
 import type { Category, Project } from '../types/content';
 
@@ -65,6 +66,7 @@ export function Projects() {
             <div className="no-scrollbar -mr-4 flex flex-1 items-center gap-5 overflow-x-auto py-3.5 pr-4 sm:gap-7">
               {categories.map((category) => {
                 const active = filter === category;
+                const tone = category === 'All' ? 'var(--text)' : categoryTones[category];
                 const count =
                   category === 'All'
                     ? projects.length
@@ -77,25 +79,32 @@ export function Projects() {
                       onClick={() => setFilter(category)}
                       aria-pressed={active}
                       className={cn(
-                        'whitespace-nowrap text-[13px] transition-colors duration-200',
+                        'flex items-center gap-2 whitespace-nowrap text-[13px] transition-colors duration-200',
                         active ? 'text-ink' : 'text-muted hover:text-ink',
                       )}
                     >
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 rounded-full transition-opacity duration-200"
+                        style={{ backgroundColor: tone, opacity: active ? 1 : 0.55 }}
+                      />
                       {category}
                     </button>
                     <span
                       aria-hidden="true"
                       className={cn(
                         'ml-1.5 hidden font-mono text-[9px] tabular transition-colors duration-200 sm:inline',
-                        active ? 'text-accent' : 'text-faint/70',
+                        active ? '' : 'text-faint/70',
                       )}
+                      style={active ? { color: tone } : undefined}
                     >
                       {String(count).padStart(2, '0')}
                     </span>
                     {active ? (
                       <motion.span
                         layoutId="project-filter"
-                        className="absolute -bottom-3.5 left-0 right-0 h-px bg-accent sm:right-4"
+                        className="absolute -bottom-3.5 left-0 right-0 h-px sm:right-4"
+                        style={{ backgroundColor: tone }}
                         transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                       />
                     ) : null}

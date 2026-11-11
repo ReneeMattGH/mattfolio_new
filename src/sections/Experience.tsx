@@ -3,6 +3,7 @@ import { Reveal } from '../components/Reveal';
 import { SectionHeader } from '../components/SectionHeader';
 import { roles } from '../data/experience';
 import { gsap } from '../lib/gsap';
+import { palette } from '../lib/tones';
 import { usePrefersReducedMotion } from '../lib/useMediaQuery';
 
 export function Experience() {
@@ -60,22 +61,30 @@ export function Experience() {
           <div
             ref={fillRef}
             aria-hidden="true"
-            className="absolute bottom-3 left-0 top-3 w-px origin-top bg-accent/70"
-            style={{ transform: 'scaleY(0)' }}
+            className="absolute bottom-3 left-0 top-3 w-px origin-top"
+            style={{
+              transform: 'scaleY(0)',
+              backgroundImage: `linear-gradient(to bottom, ${palette.blue}, ${palette.mint}, ${palette.gold})`,
+            }}
           />
 
-          {roles.map((role, index) => (
+          {roles.map((role, index) => {
+            const tone = [palette.blue, palette.mint, palette.gold][index] ?? palette.blue;
+            return (
             <Reveal key={role.company} delay={index * 0.05}>
               <article className="group relative border-b border-line py-10 transition-colors duration-300 first:border-t first:border-line md:py-14">
                 <span
                   aria-hidden="true"
-                  className="absolute -left-7 top-12 h-[7px] w-[7px] -translate-x-1/2 rotate-45 border border-accent/70 bg-bg transition-colors duration-300 group-hover:bg-accent md:-left-12 md:top-16"
+                  className="absolute -left-7 top-12 h-[7px] w-[7px] -translate-x-1/2 rotate-45 border bg-bg transition-colors duration-300 md:-left-12 md:top-16"
+                  style={{ borderColor: tone }}
                 />
 
                 <div className="grid gap-7 md:grid-cols-12 md:gap-10">
                   <div className="md:col-span-3">
                     <div className="flex items-baseline gap-3">
-                      <span className="kicker text-accent">0{index + 1}</span>
+                      <span className="kicker" style={{ color: tone }}>
+                        0{index + 1}
+                      </span>
                       <span className="kicker tabular text-muted">
                         {role.start} — {role.end}
                       </span>
@@ -85,7 +94,7 @@ export function Experience() {
                       {role.current ? (
                         <span
                           aria-hidden="true"
-                          className="status-dot inline-block h-1.5 w-1.5 rounded-full bg-accent"
+                          className="status-dot inline-block h-1.5 w-1.5 rounded-full bg-mint"
                         />
                       ) : null}
                     </p>
@@ -123,7 +132,8 @@ export function Experience() {
                         >
                           <span
                             aria-hidden="true"
-                            className="mt-[0.72em] h-px w-4 shrink-0 bg-accent/50"
+                            className="mt-[0.72em] h-px w-4 shrink-0"
+                            style={{ backgroundColor: `${tone}80` }}
                           />
                           <span>{bullet}</span>
                         </li>
@@ -133,7 +143,8 @@ export function Experience() {
                 </div>
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

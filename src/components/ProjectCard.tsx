@@ -2,6 +2,7 @@ import { ArrowUpRight, Eye } from 'lucide-react';
 import { useLayoutEffect, useRef } from 'react';
 import type { Project } from '../types/content';
 import { gsap } from '../lib/gsap';
+import { palette, projectTone } from '../lib/tones';
 import { usePrefersReducedMotion } from '../lib/useMediaQuery';
 import { cn } from '../lib/utils';
 import { ProjectPreview } from './ProjectPreview';
@@ -93,10 +94,13 @@ function ProjectLinks({
   );
 }
 
-function Badge({ children }: { children: string }) {
+function Badge({ children, tone = palette.blue }: { children: string; tone?: string }) {
   return (
-    <span className="pointer-events-none inline-flex w-fit items-center gap-1.5 rounded-chip border border-accent/30 bg-accent/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-accent">
-      <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+    <span
+      className="pointer-events-none inline-flex w-fit items-center gap-1.5 rounded-chip border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em]"
+      style={{ borderColor: `${tone}4d`, backgroundColor: `${tone}14`, color: tone }}
+    >
+      <span aria-hidden="true" className="h-1 w-1 rounded-full" style={{ backgroundColor: tone }} />
       {children}
     </span>
   );
@@ -110,6 +114,8 @@ interface CardProps {
 
 export function ProjectCard({ project, index, onOpen }: CardProps) {
   const previewRef = usePreviewScroll();
+  const tone = projectTone(project);
+  const badgeTone = /winner|best/i.test(project.badge ?? '') ? palette.gold : tone;
 
   return (
     <article
@@ -118,6 +124,16 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
       style={{ animationDelay: `${Math.min(index, 7) * 55}ms` }}
       className="card-enter group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition-[border-color,transform,box-shadow] duration-500 ease-smooth hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_30px_60px_-36px_rgba(0,0,0,0.95)]"
     >
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[4] h-px"
+        style={{ background: `linear-gradient(90deg, ${tone}, transparent 58%)`, opacity: 0.6 }}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[4] rounded-card border opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{ borderColor: `${tone}59` }}
+      />
       <button
         type="button"
         onClick={onOpen}
@@ -139,14 +155,21 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
           aria-hidden="true"
           className="pointer-events-none absolute right-3 top-3 z-[3] inline-flex items-center gap-1.5 rounded-chip border border-[rgba(255,255,255,0.14)] bg-[rgba(10,10,10,0.55)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-ink backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
         >
-          <Eye size={11} className="text-accent" />
+          <Eye size={11} style={{ color: tone }} />
           Preview
         </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="flex items-center justify-between gap-4 font-mono text-[9px] uppercase tracking-[0.1em] text-faint">
-          <span className="truncate">{project.categories.join(' / ')}</span>
+          <span className="flex min-w-0 items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="h-1 w-1 shrink-0 rounded-full"
+              style={{ backgroundColor: tone }}
+            />
+            <span className="truncate">{project.categories.join(' / ')}</span>
+          </span>
           <span className="shrink-0 tabular">
             {String(index).padStart(2, '0')}
             {project.year ? ` · ${project.year}` : ''}
@@ -174,7 +197,7 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
 
         {project.badge ? (
           <div className="mt-4 flex">
-            <Badge>{project.badge}</Badge>
+            <Badge tone={badgeTone}>{project.badge}</Badge>
           </div>
         ) : null}
 
@@ -201,6 +224,8 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
 
 export function FlagshipCard({ project, index, onOpen }: CardProps) {
   const previewRef = usePreviewScroll();
+  const tone = projectTone(project);
+  const badgeTone = /winner|best/i.test(project.badge ?? '') ? palette.gold : tone;
 
   return (
     <article
@@ -209,6 +234,16 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
       style={{ animationDelay: `${Math.min(index, 7) * 55}ms` }}
       className="card-enter group relative overflow-hidden rounded-card border border-line bg-surface transition-[border-color,box-shadow] duration-500 ease-smooth hover:border-line-strong hover:shadow-[0_36px_80px_-44px_rgba(0,0,0,0.95)]"
     >
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[4] h-px"
+        style={{ background: `linear-gradient(90deg, ${tone}, transparent 55%)`, opacity: 0.65 }}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[4] rounded-card border opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{ borderColor: `${tone}59` }}
+      />
       <button
         type="button"
         onClick={onOpen}
@@ -220,17 +255,28 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
         <div className="flex flex-col justify-between p-6 md:col-span-5 md:p-9">
           <div>
             <div className="flex items-center gap-3">
-              <span className="kicker text-accent">Flagship</span>
-              <span aria-hidden="true" className="h-px w-7 bg-accent/50" />
+              <span className="kicker" style={{ color: tone }}>
+                Flagship
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-px w-7"
+                style={{ backgroundColor: `${tone}80` }}
+              />
               <span className="kicker text-faint">Selected</span>
             </div>
 
             <h3 className="mt-8 text-[clamp(2.6rem,5.6vw,4.8rem)] font-semibold leading-[0.86] tracking-[-0.055em] text-ink">
               {project.title}
-              <span className="text-accent">.</span>
+              <span style={{ color: tone }}>.</span>
             </h3>
 
-            <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.1em] text-faint">
+            <div className="mt-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.1em] text-faint">
+              <span
+                aria-hidden="true"
+                className="h-1 w-1 shrink-0 rounded-full"
+                style={{ backgroundColor: tone }}
+              />
               {project.categories.join(' · ')}
               {project.year ? ` · ${project.year}` : ''}
             </div>
@@ -240,8 +286,19 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
             </p>
 
             {project.badge ? (
-              <span className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-chip border border-accent/30 bg-accent/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-accent">
-                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+              <span
+                className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-chip border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em]"
+                style={{
+                  borderColor: `${badgeTone}4d`,
+                  backgroundColor: `${badgeTone}14`,
+                  color: badgeTone,
+                }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-1 w-1 rounded-full"
+                  style={{ backgroundColor: badgeTone }}
+                />
                 {project.badge}
               </span>
             ) : null}
@@ -281,7 +338,7 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
             aria-hidden="true"
             className="pointer-events-none absolute right-4 top-4 z-[3] inline-flex items-center gap-1.5 rounded-chip border border-[rgba(255,255,255,0.14)] bg-[rgba(10,10,10,0.55)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-ink backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
           >
-            <Eye size={11} className="text-accent" />
+            <Eye size={11} style={{ color: tone }} />
             Preview
           </span>
         </div>

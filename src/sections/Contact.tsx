@@ -411,7 +411,7 @@ export function Contact() {
               <div className="mt-auto border-t border-line pt-5">
                 <span className="kicker text-faint">Availability</span>
                 <p className="mt-2 flex items-start gap-2 text-[13px] leading-[1.6] text-muted">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent status-dot" />
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-mint status-dot" />
                   {profile.status}
                 </p>
               </div>

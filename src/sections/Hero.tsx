@@ -6,10 +6,13 @@ import { StatusStamp } from '../components/StatusStamp';
 import { Ticker } from '../components/Ticker';
 import { profile } from '../data/profile';
 import { gsap } from '../lib/gsap';
+import { palette } from '../lib/tones';
 import { useIsTouch, usePrefersReducedMotion } from '../lib/useMediaQuery';
 import { shortcutLabel } from '../lib/utils';
 
 const HeroScene = lazy(() => import('../three/HeroScene'));
+
+const proofTones = [palette.blue, palette.mint, palette.gold, palette.iris];
 
 const capabilities = [
   'Smart contracts',
@@ -251,7 +254,7 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
 
           <div className="relative mt-10 max-w-[1140px] md:mt-14">
             <div data-hero-fade className="flex items-center gap-3">
-              <span className="status-dot h-1.5 w-1.5 rounded-full bg-accent" />
+              <span className="status-dot h-1.5 w-1.5 rounded-full bg-mint" />
               <p className="kicker text-muted">{profile.status}</p>
             </div>
 
@@ -331,7 +334,12 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
                 key={item}
                 className="flex items-start gap-3 border-b border-line py-4 pr-4 lg:border-b-0 lg:border-l lg:border-line lg:px-5 lg:py-5 lg:first:border-l-0 lg:first:pl-0"
               >
-                <span className="kicker tabular text-accent">0{index + 1}</span>
+                <span
+                  className="kicker tabular"
+                  style={{ color: proofTones[index] ?? palette.blue }}
+                >
+                  0{index + 1}
+                </span>
                 <span className="font-mono text-[11px] uppercase leading-[1.55] tracking-[0.04em] text-ink sm:text-[12px]">
                   {item}
                 </span>

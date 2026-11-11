@@ -1,10 +1,11 @@
 import { ArrowUpRight, Award, Medal, Trophy } from 'lucide-react';
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { AchievementModal } from '../components/AchievementModal';
 import { Reveal } from '../components/Reveal';
 import { SectionHeader } from '../components/SectionHeader';
 import { Ticker } from '../components/Ticker';
 import { achievements } from '../data/achievements';
+import { palette } from '../lib/tones';
 import { cn } from '../lib/utils';
 import type { Achievement } from '../types/content';
 
@@ -12,6 +13,12 @@ function iconFor(result: string) {
   if (/winner|best/i.test(result)) return Trophy;
   if (/runner/i.test(result)) return Medal;
   return Award;
+}
+
+function toneFor(result: string) {
+  if (/winner|best/i.test(result)) return palette.gold;
+  if (/runner/i.test(result)) return palette.blue;
+  return palette.mint;
 }
 
 export function Achievements() {
@@ -52,23 +59,36 @@ export function Achievements() {
               data-cursor-label="View"
               onClick={() => setSelected(featured)}
               aria-label={`View the ${featured.event} achievement`}
-              className="group relative block w-full overflow-hidden rounded-card border border-[rgba(143,180,255,0.32)] bg-surface text-left transition-[border-color,box-shadow] duration-500 ease-smooth hover:border-accent hover:shadow-[0_44px_100px_-50px_rgba(143,180,255,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              style={{ '--tone': palette.gold } as CSSProperties}
+              className="result-card group relative block w-full overflow-hidden rounded-card border bg-surface text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-[rgba(143,180,255,0.9)] via-[rgba(143,180,255,0.35)] to-transparent"
+                className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-[rgba(242,199,143,0.95)] via-[rgba(242,199,143,0.35)] to-transparent"
               />
 
               <div className="grid md:grid-cols-12">
                 <div className="relative flex flex-col justify-between p-6 md:col-span-7 md:p-10">
-                  <div className="flex items-center gap-3">
-                    <span className="kicker text-accent">Latest win</span>
-                    <span aria-hidden="true" className="h-px w-8 bg-[rgba(143,180,255,0.5)]" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-[rgba(242,199,143,0.08)] blur-3xl"
+                  />
+                  <div className="relative flex items-center gap-3">
+                    <span className="kicker" style={{ color: palette.gold }}>
+                      Latest win
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="h-px w-8 bg-[rgba(242,199,143,0.5)]"
+                    />
                     <span className="kicker text-muted">ETHGlobal Mumbai</span>
                   </div>
 
-                  <div className="mt-9">
-                    <p className="text-[clamp(2.8rem,6vw,4.9rem)] font-semibold leading-[0.9] tracking-[-0.055em] text-accent">
+                  <div className="relative mt-9">
+                    <p
+                      className="text-[clamp(2.8rem,6vw,4.9rem)] font-semibold leading-[0.9] tracking-[-0.055em]"
+                      style={{ color: palette.gold }}
+                    >
                       {featured.result}
                     </p>
                     <p className="mt-4 text-[clamp(1.05rem,1.6vw,1.35rem)] font-medium tracking-[-0.02em] text-ink">
@@ -79,8 +99,8 @@ export function Achievements() {
                     </p>
                   </div>
 
-                  <div className="mt-9 flex flex-wrap items-center gap-5">
-                    <span className="inline-flex items-center gap-2 rounded-chip border border-[rgba(143,180,255,0.45)] bg-[rgba(143,180,255,0.1)] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-accent">
+                  <div className="relative mt-9 flex flex-wrap items-center gap-5">
+                    <span className="inline-flex items-center gap-2 rounded-chip border border-[rgba(242,199,143,0.45)] bg-[rgba(242,199,143,0.1)] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-gold">
                       <Trophy size={12} aria-hidden="true" />
                       Winner
                     </span>
@@ -95,33 +115,34 @@ export function Achievements() {
                   </div>
                 </div>
 
-                <div className="relative min-h-[280px] overflow-hidden border-t border-[rgba(143,180,255,0.18)] bg-bg md:col-span-5 md:min-h-[360px] md:border-l md:border-t-0">
+                <div className="relative min-h-[280px] overflow-hidden border-t border-[rgba(242,199,143,0.18)] bg-bg md:col-span-5 md:min-h-[360px] md:border-l md:border-t-0">
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(360px_circle_at_50%_46%,rgba(143,180,255,0.18),transparent_72%)]"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(360px_circle_at_50%_46%,rgba(242,199,143,0.16),transparent_72%)]"
                   />
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 flex items-center justify-center text-[clamp(8rem,15vw,12rem)] font-semibold leading-none tracking-[-0.07em] text-outline opacity-40"
+                    className="pointer-events-none absolute inset-0 flex items-center justify-center text-[clamp(8rem,15vw,12rem)] font-semibold leading-none tracking-[-0.07em] text-transparent opacity-70"
+                    style={{ WebkitTextStroke: '1px rgba(242,199,143,0.3)' }}
                   >
                     01
                   </span>
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(143,180,255,0.14)]"
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(242,199,143,0.16)]"
                   />
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(143,180,255,0.35)] motion-safe:animate-[spin_28s_linear_infinite]"
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(242,199,143,0.4)] motion-safe:animate-[spin_28s_linear_infinite]"
                   />
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(143,180,255,0.35)] bg-[rgba(143,180,255,0.09)] text-accent shadow-[0_0_60px_-10px_rgba(143,180,255,0.45)] transition-transform duration-500 ease-smooth group-hover:scale-105"
+                    className="pointer-events-none absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(242,199,143,0.4)] bg-[rgba(242,199,143,0.1)] text-gold shadow-[0_0_60px_-10px_rgba(242,199,143,0.5)] transition-transform duration-500 ease-smooth group-hover:scale-105"
                   >
                     <Trophy size={34} strokeWidth={1.2} />
                   </span>
                   <span className="absolute left-5 top-5 mono-label">ETHGlobal</span>
-                  <span className="absolute bottom-5 left-5 mono-label text-accent">
+                  <span className="absolute bottom-5 left-5 mono-label text-gold">
                     Mumbai · Arkiv
                   </span>
                 </div>
@@ -133,6 +154,7 @@ export function Achievements() {
         <ul className="mt-4 grid gap-4 md:grid-cols-3">
           {cards.map((achievement, index) => {
             const Icon = iconFor(achievement.result);
+            const tone = toneFor(achievement.result);
             return (
               <Reveal key={achievement.event} delay={index * 0.05} className="h-full">
                 <li className="h-full">
@@ -142,27 +164,37 @@ export function Achievements() {
                     data-cursor-label="View"
                     onClick={() => setSelected(achievement)}
                     aria-label={`View the ${achievement.event} achievement`}
-                    className="data-console group relative flex h-full w-full flex-col justify-between overflow-hidden border-[rgba(143,180,255,0.28)] p-6 text-left transition-[border-color,box-shadow] duration-500 ease-smooth hover:border-[rgba(143,180,255,0.55)] hover:shadow-[0_28px_60px_-42px_rgba(143,180,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:p-7"
+                    style={{ '--tone': tone } as CSSProperties}
+                    className="result-card data-console group relative flex h-full w-full flex-col justify-between overflow-hidden border p-6 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:p-7"
                   >
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[rgba(143,180,255,0.8)] via-[rgba(143,180,255,0.25)] to-transparent"
+                      className="pointer-events-none absolute inset-x-0 top-0 h-px"
+                      style={{
+                        background: `linear-gradient(90deg, ${tone}, transparent 65%)`,
+                      }}
                     />
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[rgba(143,180,255,0.09)] blur-3xl"
+                      className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full blur-3xl"
+                      style={{ backgroundColor: `${tone}17` }}
                     />
 
                     <div className="relative flex items-center justify-between gap-3">
-                      <span className="kicker text-accent">0{index + 2}</span>
+                      <span className="kicker" style={{ color: tone }}>
+                        0{index + 2}
+                      </span>
                       <span className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.14em] text-muted">
-                        <Icon size={12} aria-hidden="true" className="text-accent" />
+                        <Icon size={12} aria-hidden="true" style={{ color: tone }} />
                         Headline result
                       </span>
                     </div>
 
                     <div className="relative mt-10">
-                      <p className="text-[clamp(1.9rem,3vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-accent">
+                      <p
+                        className="text-[clamp(1.9rem,3vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.045em]"
+                        style={{ color: tone }}
+                      >
                         {achievement.result}
                       </p>
                       <p className="mt-3 text-[13.5px] leading-[1.5] text-ink">
@@ -170,12 +202,19 @@ export function Achievements() {
                       </p>
                     </div>
 
-                    <div className="relative mt-7 flex items-center justify-between gap-3 border-t border-[rgba(143,180,255,0.2)] pt-4">
+                    <div
+                      className="relative mt-7 flex items-center justify-between gap-3 border-t pt-4"
+                      style={{ borderColor: `${tone}33` }}
+                    >
                       <span className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.1em] text-muted">
-                        <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+                        <span
+                          aria-hidden="true"
+                          className="h-1 w-1 rounded-full"
+                          style={{ backgroundColor: tone }}
+                        />
                         {achievement.year ?? 'Result recorded'}
                       </span>
-                      <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.1em] text-faint transition-colors group-hover:text-accent">
+                      <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.1em] text-faint transition-colors group-hover:text-ink">
                         Preview
                         <ArrowUpRight
                           size={11}
@@ -231,9 +270,8 @@ export function Achievements() {
               {ledger.map((achievement) => {
                 const position = achievements.indexOf(achievement) + 1;
                 const isWin = /winner|best/i.test(achievement.result);
-                const chip = isWin
-                  ? 'border-accent bg-accent font-medium text-accent-ink'
-                  : 'border-[rgba(143,180,255,0.45)] bg-[rgba(143,180,255,0.1)] text-accent';
+                const tone = toneFor(achievement.result);
+                const chip = isWin ? 'tone-fill font-medium' : 'tone-soft';
                 return (
                   <tr
                     key={achievement.event}
@@ -259,6 +297,7 @@ export function Achievements() {
                               'mt-2 inline-flex rounded-chip border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.04em] sm:hidden',
                               chip,
                             )}
+                            style={{ '--tone': tone } as CSSProperties}
                           >
                             {achievement.result}
                           </span>
@@ -267,7 +306,8 @@ export function Achievements() {
                           type="button"
                           onClick={() => setSelected(achievement)}
                           aria-label={`View the ${achievement.event} achievement`}
-                          className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-faint transition-colors duration-300 hover:border-accent hover:text-accent sm:hidden"
+                          className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-faint transition-colors duration-300 hover:text-ink sm:hidden"
+                          style={{ borderColor: `${tone}4d` }}
                         >
                           <ArrowUpRight size={13} aria-hidden="true" />
                         </button>
@@ -279,6 +319,7 @@ export function Achievements() {
                           'inline-flex rounded-chip border px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.04em]',
                           chip,
                         )}
+                        style={{ '--tone': tone } as CSSProperties}
                       >
                         {achievement.result}
                       </span>
@@ -288,7 +329,8 @@ export function Achievements() {
                         type="button"
                         onClick={() => setSelected(achievement)}
                         aria-label={`View the ${achievement.event} achievement`}
-                        className="ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-line text-faint transition-colors duration-300 hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                        className="ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-line text-faint transition-colors duration-300 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                        style={{ borderColor: `${tone}4d` }}
                       >
                         <ArrowUpRight size={13} aria-hidden="true" />
                       </button>

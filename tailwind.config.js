@@ -14,6 +14,9 @@ export default {
         faint: 'var(--text-faint)',
         accent: 'var(--accent)',
         'accent-ink': 'var(--accent-ink)',
+        mint: 'var(--mint)',
+        gold: 'var(--gold)',
+        iris: 'var(--iris)',
       },
       fontFamily: {
         sans: ['"Geist Variable"', 'Inter', 'system-ui', 'sans-serif'],

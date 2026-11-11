@@ -3,6 +3,7 @@ import { ArrowUpRight, Download, List, Menu, SquareTerminal, X } from 'lucide-re
 import { useEffect, useState } from 'react';
 import { profile } from '../data/profile';
 import { startScroll, stopScroll } from '../lib/scroll';
+import { palette } from '../lib/tones';
 import { useActiveSection } from '../lib/useActiveSection';
 import { useMagnetic } from '../lib/useMagnetic';
 import { useMediaQuery } from '../lib/useMediaQuery';
@@ -80,6 +81,16 @@ export function Navbar({
           visible ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
+        <span
+          aria-hidden="true"
+          className={cn(
+            'pointer-events-none absolute inset-x-0 bottom-0 h-px transition-opacity duration-700 ease-smooth',
+            scrolled || menuOpen ? 'opacity-100' : 'opacity-0',
+          )}
+          style={{
+            backgroundImage: `linear-gradient(90deg, ${palette.blue}00, ${palette.blue}80 22%, ${palette.mint}66 52%, ${palette.gold}66 82%, ${palette.gold}00)`,
+          }}
+        />
         <div
           className={cn(
             'border-b transition-[background-color,border-color,backdrop-filter] duration-500 ease-smooth',
@@ -124,7 +135,10 @@ export function Navbar({
                     {isActive ? (
                       <motion.span
                         layoutId="nav-underline"
-                        className="absolute inset-x-0 -bottom-0.5 h-px bg-accent"
+                        className="absolute inset-x-0 -bottom-0.5 h-px"
+                        style={{
+                          backgroundImage: `linear-gradient(90deg, ${palette.blue}, ${palette.mint})`,
+                        }}
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       />
                     ) : null}

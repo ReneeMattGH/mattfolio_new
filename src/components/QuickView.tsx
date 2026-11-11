@@ -50,7 +50,7 @@ export function QuickView({ onExit }: QuickViewProps) {
           <div className="mt-10 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-8">
               <div className="flex items-center gap-3">
-                <span className="status-dot h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="status-dot h-1.5 w-1.5 rounded-full bg-mint" />
                 <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
                   {profile.status}
                 </p>
@@ -154,7 +154,7 @@ export function QuickView({ onExit }: QuickViewProps) {
                   <span className="mono-label">Currently</span>
                   <p className="mt-3 flex items-center gap-2 text-[15px] font-medium text-ink">
                     {profile.currently.title}
-                    <span className="status-dot h-1 w-1 rounded-full bg-accent" />
+                    <span className="status-dot h-1 w-1 rounded-full bg-mint" />
                   </p>
                   <p className="mt-1 text-[12px] leading-[1.6] text-muted">
                     {profile.currently.description}

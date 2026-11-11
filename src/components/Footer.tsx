@@ -72,7 +72,7 @@ export function Footer() {
             <p className="mt-5 flex items-start gap-2 font-mono text-[10px] uppercase leading-[1.6] tracking-[0.12em] text-faint">
               <span
                 aria-hidden="true"
-                className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent status-dot"
+                className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-mint status-dot"
               />
               {profile.status}
             </p>

@@ -110,9 +110,9 @@ export function About() {
             <Reveal delay={0.06} className="flex-1">
               <SpotlightCard className="flex h-full flex-col p-6 md:p-7">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="kicker text-accent">Currently</span>
+                  <span className="kicker text-mint">Currently</span>
                   <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
-                    <span className="status-dot h-1.5 w-1.5 rounded-full bg-accent" />
+                    <span className="status-dot h-1.5 w-1.5 rounded-full bg-mint" />
                     {profile.currently.status}
                   </span>
                 </div>

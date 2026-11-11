@@ -1,5 +1,7 @@
 import { Lock, ShieldCheck } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import type { Project, PreviewKind } from '../types/content';
+import { projectTone } from '../lib/tones';
 import { cn } from '../lib/utils';
 
 function Line({
@@ -707,9 +709,17 @@ function Mockup({ kind }: { kind: PreviewKind }) {
 
 export function ProjectPreview({ project }: { project: Project }) {
   const terminal = project.preview === 'terminal';
+  const tone = projectTone(project);
+  const tint = {
+    '--accent': tone,
+    backgroundImage: `radial-gradient(420px circle at 86% -12%, ${tone}14, transparent 66%)`,
+  } as CSSProperties;
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[9px] border border-line bg-[#161616]">
+    <div
+      className="flex h-full w-full flex-col overflow-hidden rounded-[9px] border border-line bg-[#15171b]"
+      style={tint}
+    >
       {terminal ? (
         <TerminalChrome label="zerohour — zsh" />
       ) : (
