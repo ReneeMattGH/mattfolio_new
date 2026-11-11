@@ -1,5 +1,6 @@
 import { Lock, ShieldCheck } from 'lucide-react';
 import type { CSSProperties } from 'react';
+import { projectImages } from '../data/projectImages';
 import type { Project, PreviewKind } from '../types/content';
 import { projectTone } from '../lib/tones';
 import { cn } from '../lib/utils';
@@ -709,6 +710,7 @@ function Mockup({ kind }: { kind: PreviewKind }) {
 
 export function ProjectPreview({ project }: { project: Project }) {
   const terminal = project.preview === 'terminal';
+  const image = project.image ?? projectImages[project.id];
   const tone = projectTone(project);
   const tint = {
     '--accent': tone,
@@ -726,12 +728,13 @@ export function ProjectPreview({ project }: { project: Project }) {
         <BrowserChrome url={`${project.id}.matt`} />
       )}
       <div className="relative min-h-0 flex-1 overflow-hidden p-2.5 md:p-3">
-        {project.image ? (
+        {image ? (
           <img
-            src={project.image}
+            src={image}
             alt={`${project.title} interface preview`}
-            className="h-full w-full object-cover"
+            className="h-full w-full rounded-[4px] object-cover object-top"
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <Mockup kind={project.preview} />
