@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -7,6 +7,7 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const PORT = 9334;
 const BASE = process.env.SITE_URL ?? 'http://127.0.0.1:5174/';
 const OUT = '/tmp/matt-shots';
+mkdirSync(OUT, { recursive: true });
 const profile = mkdtempSync(join(tmpdir(), 'matt-verify-'));
 
 const chrome = spawn(
