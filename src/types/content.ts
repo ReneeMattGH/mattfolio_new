@@ -97,7 +97,7 @@ export interface Project {
 
 export interface Experiment {
   title: string;
-  href?: string;
+  href: string;
 }
 
 export interface Achievement {

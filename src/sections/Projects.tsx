@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { FlagshipCard, ProjectCard } from '../components/ProjectCard';
 import { ProjectModal } from '../components/ProjectModal';
@@ -15,6 +15,7 @@ import type { Category, Project } from '../types/content';
 export function Projects() {
   const [filter, setFilter] = useState<'All' | Category>('All');
   const [selected, setSelected] = useState<Project | null>(null);
+  const [expanded, setExpanded] = useState(false);
 
   const close = useCallback(() => setSelected(null), []);
 
@@ -54,6 +55,9 @@ export function Projects() {
         a.index - b.index,
     )
     .map(({ project }) => project);
+  const trimmed = filter === 'All' && !expanded;
+  const restShown = trimmed ? rest.slice(0, 6) : rest;
+  const shownCount = (flagship ? 1 : 0) + restShown.length;
 
   return (
     <section id="projects" className="section">
@@ -84,7 +88,10 @@ export function Projects() {
                   <div key={category} className="relative flex shrink-0 items-baseline">
                     <button
                       type="button"
-                      onClick={() => setFilter(category)}
+                      onClick={() => {
+                        setFilter(category);
+                        setExpanded(false);
+                      }}
                       aria-pressed={active}
                       className={cn(
                         'flex items-center gap-2 whitespace-nowrap text-[13px] transition-colors duration-200',
@@ -122,7 +129,7 @@ export function Projects() {
             </div>
             <div className="hidden shrink-0 items-center gap-3 border-l border-line pl-6 sm:flex">
               <span className="kicker tabular text-faint">
-                {String(visible.length).padStart(2, '0')} shown
+                {String(shownCount).padStart(2, '0')} shown
               </span>
               <span aria-hidden="true" className="h-1 w-1 rotate-45 bg-accent/70" />
               <span className="kicker text-faint">2025 — 26</span>
@@ -147,7 +154,7 @@ export function Projects() {
           ) : null}
 
           <div className={cn('grid gap-4 md:grid-cols-2', flagship && 'mt-4')}>
-            {rest.map((project) => (
+            {restShown.map((project) => (
               <Tilt key={project.id} className="h-full">
                 <ProjectCard
                   project={project}
@@ -157,6 +164,22 @@ export function Projects() {
               </Tilt>
             ))}
           </div>
+
+          {filter === 'All' && rest.length > 6 ? (
+            <button
+              type="button"
+              onClick={() => setExpanded((current) => !current)}
+              aria-expanded={expanded}
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-card border border-line bg-surface px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted transition-colors duration-300 hover:border-line-strong hover:text-ink"
+            >
+              {expanded ? 'Show fewer projects' : `Show all ${visible.length} projects`}
+              <ChevronDown
+                size={13}
+                aria-hidden="true"
+                className={cn('transition-transform duration-300', expanded && 'rotate-180')}
+              />
+            </button>
+          ) : null}
         </motion.div>
 
         <Reveal delay={0.05}>
@@ -174,35 +197,23 @@ export function Projects() {
               </div>
 
               <ul className="grid flex-1 gap-x-10 sm:grid-cols-2 lg:max-w-[560px]">
-                {experiments.map((experiment) =>
-                  experiment.href ? (
-                    <li key={experiment.title} className="border-t border-line">
-                      <a
-                        href={experiment.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="group row-hover flex items-center justify-between gap-3 py-3.5 pl-4 font-mono text-[11px] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
-                      >
-                        {experiment.title}
-                        <ArrowUpRight
-                          size={13}
-                          aria-hidden="true"
-                          className="shrink-0 text-faint transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                        />
-                      </a>
-                    </li>
-                  ) : (
-                    <li
-                      key={experiment.title}
-                      className="flex items-center justify-between gap-3 border-t border-line py-3.5 pl-4 font-mono text-[11px] uppercase tracking-[0.06em] text-faint"
+                {experiments.map((experiment) => (
+                  <li key={experiment.title} className="border-t border-line">
+                    <a
+                      href={experiment.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="group row-hover flex items-center justify-between gap-3 py-3.5 pl-4 font-mono text-[11px] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
                     >
                       {experiment.title}
-                      <span aria-hidden="true" className="font-mono text-[9px] text-faint/60">
-                        Soon
-                      </span>
-                    </li>
-                  ),
-                )}
+                      <ArrowUpRight
+                        size={13}
+                        aria-hidden="true"
+                        className="shrink-0 text-faint transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                      />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 

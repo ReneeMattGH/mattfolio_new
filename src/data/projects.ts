@@ -219,6 +219,4 @@ export const projects: Project[] = [
 export const experiments: Experiment[] = [
   { title: 'NFT Minter', href: 'https://github.com/ReneeMattGH/NFT_minter' },
   { title: 'Crypto-token.sol', href: 'https://github.com/ReneeMattGH/Crypto-token.sol' },
-  { title: 'ZK-proof voting prototype' },
-  { title: 'NFT certification engine' },
 ];
