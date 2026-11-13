@@ -87,7 +87,7 @@ export const projects: Project[] = [
     solution:
       'MannaPay models subscriptions on Bitcoin Layer-2, with the billing flow handled on-chain.',
     role: 'Full-stack and on-chain development.',
-    outcome: 'Prototype published on GitHub.',
+    outcome: 'Bitcoin L2 subscription prototype, with the billing flow on-chain, published on GitHub.',
     stack: ['Bitcoin L2', 'TypeScript', 'React'],
     codeUrl: 'https://github.com/ReneeMattGH/MannaPay',
     preview: 'subscribe',
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     solution:
       'Unpaid invoices are tokenized, so they can be advanced and settled on-chain instead of waiting.',
     role: 'Full-stack and smart-contract development.',
-    outcome: 'Working prototype published on GitHub.',
+    outcome: 'Invoice tokenization and on-chain settlement prototype published on GitHub.',
     stack: ['Solidity', 'TypeScript', 'React', 'Node.js'],
     codeUrl: 'https://github.com/ReneeMattGH/InvoPay',
     preview: 'invoice',
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     solution:
       'An agent reads market charts and produces a directional view with its reasoning attached.',
     role: 'AI and full-stack development.',
-    outcome: 'Working prototype published on GitHub.',
+    outcome: 'LLM market-analysis prototype published on GitHub.',
     stack: ['Python', 'LLMs', 'TypeScript'],
     codeUrl: 'https://github.com/ReneeMattGH/Sol-AI',
     preview: 'chart',
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     solution:
       'GeoTrade combines AI analysis with a global trade view, so regional movement is read in context.',
     role: 'AI pipeline and frontend development.',
-    outcome: 'Published on GitHub as a working prototype.',
+    outcome: 'AI analysis and global trade prototype published on GitHub.',
     stack: ['Python', 'LLMs', 'React'],
     codeUrl: 'https://github.com/ReneeMattGH/geo',
     preview: 'globe',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     solution:
       'A CLI runs an AI review from the terminal, surfacing vulnerabilities and errors where the work happens.',
     role: 'CLI and AI integration.',
-    outcome: 'Published on GitHub as a working CLI prototype.',
+    outcome: 'AI code-review CLI published on GitHub.',
     stack: ['Python', 'LLMs', 'CLI'],
     codeUrl: 'https://github.com/ReneeMattGH/bh---zerohour',
     preview: 'terminal',
@@ -195,7 +195,7 @@ export const projects: Project[] = [
     solution:
       'Records are shared between patient and doctor with decentralized access control rather than a single custodian.',
     role: 'Blockchain and application development.',
-    outcome: 'Prototype built around decentralized record access.',
+    outcome: 'Decentralized patient-record prototype with wallet-controlled access.',
     stack: ['Solidity', 'React', 'Node.js'],
     preview: 'health',
   },
