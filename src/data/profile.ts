@@ -4,7 +4,7 @@ import type { Profile } from '../types/content';
  * Site URL used for canonical tags and structured data.
  * Update this to the production domain before deploying.
  */
-export const SITE_URL = 'https://matt-portfolio.vercel.app';
+export const SITE_URL = 'https://mattfolio-new.vercel.app';
 
 export const profile: Profile = {
   name: 'George Kingsley Renee Matthew',
@@ -58,7 +58,6 @@ export const profile: Profile = {
     },
     { label: 'X', handle: '@0xmattchain', href: 'https://x.com/0xmattchain' },
     { label: 'HAVXWallet', handle: '@havxwallet', href: 'https://x.com/havxwallet' },
-    { label: 'Portfolio', handle: 'matt-portfolio', href: '/' },
     { label: 'Resume', handle: 'PDF', href: '/resume.pdf' },
   ],
 };
