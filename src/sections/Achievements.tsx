@@ -154,8 +154,8 @@ export function Achievements() {
             const Icon = iconFor(achievement.result);
             const tone = toneFor(achievement.result);
             return (
-              <Reveal key={achievement.event} delay={index * 0.05} className="h-full">
-                <li className="h-full">
+              <li key={achievement.event} className="h-full">
+                <Reveal delay={index * 0.05} className="h-full">
                   <button
                     type="button"
                     onClick={() => setSelected(achievement)}
@@ -220,8 +220,8 @@ export function Achievements() {
                       </span>
                     </div>
                   </button>
-                </li>
-              </Reveal>
+                </Reveal>
+              </li>
             );
           })}
         </ul>
