@@ -5,7 +5,6 @@ import { FlagshipCard, ProjectCard } from '../components/ProjectCard';
 import { ProjectModal } from '../components/ProjectModal';
 import { Reveal } from '../components/Reveal';
 import { SectionHeader } from '../components/SectionHeader';
-import { Tilt } from '../components/Tilt';
 import { categories, experiments, projects } from '../data/projects';
 import { FILTER_PROJECTS_EVENT, OPEN_PROJECT_EVENT } from '../lib/siteEvents';
 import { categoryTones } from '../lib/tones';
@@ -144,24 +143,21 @@ export function Projects() {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           {flagship ? (
-            <Tilt max={2.2}>
-              <FlagshipCard
-                project={flagship}
-                index={projects.indexOf(flagship) + 1}
-                onOpen={() => setSelected(flagship)}
-              />
-            </Tilt>
+            <FlagshipCard
+              project={flagship}
+              index={projects.indexOf(flagship) + 1}
+              onOpen={() => setSelected(flagship)}
+            />
           ) : null}
 
           <div className={cn('grid gap-4 md:grid-cols-2', flagship && 'mt-4')}>
             {restShown.map((project) => (
-              <Tilt key={project.id} className="h-full">
-                <ProjectCard
-                  project={project}
-                  index={projects.indexOf(project) + 1}
-                  onOpen={() => setSelected(project)}
-                />
-              </Tilt>
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={projects.indexOf(project) + 1}
+                onOpen={() => setSelected(project)}
+              />
             ))}
           </div>
 

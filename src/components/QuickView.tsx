@@ -7,7 +7,6 @@ import { Achievements } from '../sections/Achievements';
 import { Contact } from '../sections/Contact';
 import { Experience } from '../sections/Experience';
 import { Skills } from '../sections/Skills';
-import { Magnetic } from './Magnetic';
 import { ProjectModal } from './ProjectModal';
 import { Reveal } from './Reveal';
 import { SectionHeader } from './SectionHeader';
@@ -73,18 +72,14 @@ export function QuickView({ onExit }: QuickViewProps) {
               </p>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Magnetic strength={12} tilt={8}>
-                  <a href="#projects" className="btn btn-primary">
-                    View projects
-                    <ArrowRight size={14} className="btn-arrow" />
-                  </a>
-                </Magnetic>
-                <Magnetic strength={10} tilt={7}>
-                  <a href={profile.resumeUrl} download className="btn btn-outline">
-                    Download resume
-                    <Download size={14} className="opacity-70" />
-                  </a>
-                </Magnetic>
+                <a href="#projects" className="btn btn-primary">
+                  View projects
+                  <ArrowRight size={14} className="btn-arrow" />
+                </a>
+                <a href={profile.resumeUrl} download className="btn btn-outline">
+                  Download resume
+                  <Download size={14} className="opacity-70" />
+                </a>
                 <a href="#contact" className="link-underline inline-flex items-center gap-1.5 text-[14px]">
                   Email
                   <ArrowUpRight size={13} />
@@ -230,12 +225,10 @@ export function QuickView({ onExit }: QuickViewProps) {
             ))}
           </div>
 
-          <Magnetic strength={10} tilt={7}>
-            <button type="button" onClick={onExit} className="btn btn-outline mt-4">
-              See all {projects.length} projects
-              <ArrowUpRight size={14} className="btn-arrow" />
-            </button>
-          </Magnetic>
+          <button type="button" onClick={onExit} className="btn btn-outline mt-4">
+            See all {projects.length} projects
+            <ArrowUpRight size={14} className="btn-arrow" />
+          </button>
         </div>
 
         <ProjectModal project={selected} onClose={() => setSelected(null)} />

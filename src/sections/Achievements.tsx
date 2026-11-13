@@ -55,8 +55,6 @@ export function Achievements() {
           <Reveal>
             <button
               type="button"
-              data-cursor
-              data-cursor-label="View"
               onClick={() => setSelected(featured)}
               aria-label={`View the ${featured.event} achievement`}
               style={{ '--tone': palette.gold } as CSSProperties}
@@ -160,8 +158,6 @@ export function Achievements() {
                 <li className="h-full">
                   <button
                     type="button"
-                    data-cursor
-                    data-cursor-label="View"
                     onClick={() => setSelected(achievement)}
                     aria-label={`View the ${achievement.event} achievement`}
                     style={{ '--tone': tone } as CSSProperties}

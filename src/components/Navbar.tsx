@@ -5,10 +5,8 @@ import { profile } from '../data/profile';
 import { startScroll, stopScroll } from '../lib/scroll';
 import { palette } from '../lib/tones';
 import { useActiveSection } from '../lib/useActiveSection';
-import { useMagnetic } from '../lib/useMagnetic';
 import { useMediaQuery } from '../lib/useMediaQuery';
 import { cn, shortcutLabel } from '../lib/utils';
-import { Magnetic } from './Magnetic';
 
 const links = [
   { id: 'home', label: 'Home', index: '00' },
@@ -24,25 +22,16 @@ const links = [
 const navIds = links.map((link) => link.id);
 
 interface NavbarProps {
-  visible: boolean;
   quickView: boolean;
   onToggleQuickView: () => void;
   onOpenTerminal: () => void;
 }
 
-export function Navbar({
-  visible,
-  quickView,
-  onToggleQuickView,
-  onOpenTerminal,
-}: NavbarProps) {
+export function Navbar({ quickView, onToggleQuickView, onOpenTerminal }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const active = useActiveSection(navIds);
   const desktop = useMediaQuery('(min-width: 1024px)');
-  const terminalRef = useMagnetic<HTMLButtonElement>({ strength: 6, tilt: 5, radius: 28 });
-  const quickRef = useMagnetic<HTMLButtonElement>({ strength: 6, tilt: 5, radius: 28 });
-  const menuRef = useMagnetic<HTMLButtonElement>({ strength: 5, tilt: 4, radius: 24 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -75,12 +64,7 @@ export function Navbar({
 
   return (
     <>
-      <header
-        className={cn(
-          'fixed inset-x-0 top-0 z-[80] transition-[opacity,background-color,border-color] duration-500 ease-smooth',
-          visible ? 'opacity-100' : 'pointer-events-none opacity-0',
-        )}
-      >
+      <header className="fixed inset-x-0 top-0 z-[80] transition-[background-color,border-color] duration-500 ease-smooth">
         <span
           aria-hidden="true"
           className={cn(
@@ -149,11 +133,10 @@ export function Navbar({
 
             <div className="flex items-center gap-2.5">
               <button
-                ref={terminalRef}
                 type="button"
                 onClick={onOpenTerminal}
                 aria-label="Open command terminal"
-                className="control magnetic-surface group hidden items-center gap-2 rounded-chip px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted md:inline-flex"
+                className="control group hidden items-center gap-2 rounded-chip px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted md:inline-flex"
               >
                 <SquareTerminal
                   size={13}
@@ -167,11 +150,10 @@ export function Navbar({
               </button>
 
               <button
-                ref={quickRef}
                 type="button"
                 onClick={toggleQuickView}
                 aria-pressed={quickView}
-                className="control magnetic-surface hidden items-center gap-2 rounded-chip px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted xl:inline-flex"
+                className="control hidden items-center gap-2 rounded-chip px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted xl:inline-flex"
               >
                 <span
                   className={cn(
@@ -182,25 +164,22 @@ export function Navbar({
                 {quickView ? 'Full site' : 'Quick view'}
               </button>
 
-              <Magnetic strength={9} tilt={6} radius={32}>
-                <a
-                  href={profile.resumeUrl}
-                  download
-                  className="btn btn-outline !min-h-[38px] !px-3.5 !py-0 text-[13px]"
-                >
-                  Resume
-                  <Download size={13} className="opacity-70" />
-                </a>
-              </Magnetic>
+              <a
+                href={profile.resumeUrl}
+                download
+                className="btn btn-outline !min-h-[38px] !px-3.5 !py-0 text-[13px]"
+              >
+                Resume
+                <Download size={13} className="opacity-70" />
+              </a>
 
               <button
-                ref={menuRef}
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-menu"
-                className="control magnetic-surface inline-flex h-10 w-10 items-center justify-center rounded-field text-ink lg:hidden"
+                className="control inline-flex h-10 w-10 items-center justify-center rounded-field text-ink lg:hidden"
               >
                 {menuOpen ? <X size={18} /> : <Menu size={18} />}
               </button>
@@ -293,12 +272,10 @@ export function Navbar({
                     )}
                   />
                 </button>
-                <Magnetic className="w-full" strength={10} tilt={6}>
-                  <a href={profile.resumeUrl} download className="btn btn-primary w-full">
-                    Download resume
-                    <Download size={14} />
-                  </a>
-                </Magnetic>
+                <a href={profile.resumeUrl} download className="btn btn-primary w-full">
+                  Download resume
+                  <Download size={14} />
+                </a>
               </motion.div>
 
               <div className="mt-auto pt-10">

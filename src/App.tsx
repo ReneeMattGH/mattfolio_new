@@ -1,9 +1,7 @@
 import Lenis from 'lenis';
 import { useCallback, useEffect, useState } from 'react';
 import { AmbientBackground } from './components/AmbientBackground';
-import { Cursor } from './components/Cursor';
 import { Footer } from './components/Footer';
-import { Loader } from './components/Loader';
 import { Navbar } from './components/Navbar';
 import { QuickView } from './components/QuickView';
 import { ScrollProgress } from './components/ScrollProgress';
@@ -23,7 +21,6 @@ import { requestProjectFilter, requestProjectOpen } from './lib/siteEvents';
 import { usePrefersReducedMotion } from './lib/useMediaQuery';
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false);
   const [quickView, setQuickView] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const reduced = usePrefersReducedMotion();
@@ -45,8 +42,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!loaded) return;
-
     if (reduced) {
       ScrollTrigger.refresh();
       return;
@@ -75,7 +70,7 @@ export default function App() {
       gsap.ticker.remove(tick);
       setLenis(null);
     };
-  }, [loaded, reduced]);
+  }, [reduced]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => ScrollTrigger.refresh(), 350);
@@ -152,12 +147,9 @@ export default function App() {
 
   return (
     <>
-      <Loader onDone={() => setLoaded(true)} />
       <AmbientBackground />
       <ScrollProgress />
-      <Cursor />
       <Navbar
-        visible={loaded}
         quickView={quickView}
         onToggleQuickView={toggleQuickView}
         onOpenTerminal={() => setTerminalOpen(true)}
@@ -167,7 +159,7 @@ export default function App() {
         <QuickView onExit={toggleQuickView} />
       ) : (
         <main>
-          <Hero start={loaded} onOpenTerminal={() => setTerminalOpen(true)} />
+          <Hero onOpenTerminal={() => setTerminalOpen(true)} />
           <About />
           <Experience />
           <Projects />

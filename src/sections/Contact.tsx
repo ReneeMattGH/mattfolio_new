@@ -1,12 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Magnetic } from '../components/Magnetic';
 import { Reveal } from '../components/Reveal';
 import { SectionHeader } from '../components/SectionHeader';
 import { profile } from '../data/profile';
 import { copyText } from '../lib/clipboard';
-import { useMagnetic } from '../lib/useMagnetic';
 
 type FormValues = { name: string; email: string; message: string };
 type FormErrors = Partial<Record<keyof FormValues, string>>;
@@ -43,7 +41,6 @@ export function Contact() {
   const [status, setStatus] = useState<Status>('idle');
   const [toast, setToast] = useState<Toast>(null);
   const timerRef = useRef<number | null>(null);
-  const copyRef = useMagnetic<HTMLButtonElement>({ strength: 7, tilt: 6, radius: 26 });
 
   useEffect(() => {
     return () => {
@@ -186,10 +183,9 @@ export function Contact() {
 
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <button
-                  ref={copyRef}
                   type="button"
                   onClick={copyEmail}
-                  className="control magnetic-surface inline-flex items-center gap-2 rounded-field px-3 py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-muted"
+                  className="control inline-flex items-center gap-2 rounded-field px-3 py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-muted"
                   aria-label="Copy email address"
                 >
                   {toast === 'copied' ? (
@@ -325,18 +321,16 @@ export function Contact() {
                   </div>
 
                   <div className="mt-6 flex flex-wrap items-center gap-4">
-                    <Magnetic strength={12} tilt={8}>
-                      <button
-                        type="submit"
-                        disabled={status === 'submitting'}
-                        className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {status === 'submitting' ? 'Sending…' : 'Send message'}
-                        {status === 'submitting' ? null : (
-                          <ArrowUpRight size={14} className="btn-arrow" />
-                        )}
-                      </button>
-                    </Magnetic>
+                    <button
+                      type="submit"
+                      disabled={status === 'submitting'}
+                      className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {status === 'submitting' ? 'Sending…' : 'Send message'}
+                      {status === 'submitting' ? null : (
+                        <ArrowUpRight size={14} className="btn-arrow" />
+                      )}
+                    </button>
                     <p className="mono-label">
                       {hasEndpoint ? 'Sent securely' : 'Opens your email app'}
                     </p>

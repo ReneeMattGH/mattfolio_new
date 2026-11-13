@@ -23,7 +23,6 @@
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
   --dur-ui: 240ms;
   --dur-reveal: 900ms;
 

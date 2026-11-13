@@ -6,7 +6,6 @@ import { projects } from '../data/projects';
 import { startScroll, stopScroll } from '../lib/scroll';
 import { palette, projectTone } from '../lib/tones';
 import type { Project } from '../types/content';
-import { Magnetic } from './Magnetic';
 import { ProjectPreview } from './ProjectPreview';
 
 interface ProjectModalProps {
@@ -214,30 +213,26 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                 <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-line pt-6">
                   {project.codeUrl ? (
-                    <Magnetic strength={10} tilt={7}>
-                      <a
-                        href={project.codeUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="btn btn-outline"
-                      >
-                        View code
-                        <ArrowUpRight size={14} className="btn-arrow" />
-                      </a>
-                    </Magnetic>
+                    <a
+                      href={project.codeUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="btn btn-outline"
+                    >
+                      View code
+                      <ArrowUpRight size={14} className="btn-arrow" />
+                    </a>
                   ) : null}
                   {project.liveUrl ? (
-                    <Magnetic strength={12} tilt={8}>
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="btn btn-primary"
-                      >
-                        Open live
-                        <ArrowUpRight size={14} className="btn-arrow" />
-                      </a>
-                    </Magnetic>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="btn btn-primary"
+                    >
+                      Open live
+                      <ArrowUpRight size={14} className="btn-arrow" />
+                    </a>
                   ) : null}
                   <button
                     type="button"

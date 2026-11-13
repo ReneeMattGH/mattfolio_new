@@ -319,8 +319,7 @@
   }
 
   .btn:hover::before,
-  .btn:focus-visible::before,
-  .magnetic-surface[data-magnetic-active='true'] .btn::before {
+  .btn:focus-visible::before {
     opacity: 1;
   }
 
@@ -820,16 +819,6 @@
   }
 }
 
-html.is-loading,
-html.is-loading body {
-  overflow: hidden;
-}
-
-html.custom-cursor,
-html.custom-cursor * {
-  cursor: none !important;
-}
-
 html.lenis-stopped,
 html.lenis-stopped body {
   overflow: hidden;
@@ -896,75 +885,11 @@ html.lenis-stopped body {
   animation: card-in 820ms var(--ease-apple) backwards;
 }
 
-.magnetic-surface {
-  transform-style: preserve-3d;
-  transition: transform 620ms var(--ease-apple);
-}
-
-.magnetic-surface[data-magnetic-active='true'] {
-  transition: transform 90ms linear;
-  will-change: transform;
-}
-
-.tilt-surface {
-  transform-style: preserve-3d;
-}
-
-.tilt-glare {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  border-radius: 12px;
-  background: radial-gradient(
-    320px circle at var(--mag-x, 50%) var(--mag-y, 50%),
-    rgba(143, 180, 255, 0.12),
-    rgba(255, 255, 255, 0.04) 34%,
-    transparent 68%
-  );
-  opacity: 0;
-  transition: opacity 320ms var(--ease);
-  pointer-events: none;
-}
-
-.tilt-surface[data-magnetic-active='true'] .tilt-glare {
-  opacity: 1;
-}
-
-.loader-curtain {
-  transition:
-    transform 820ms var(--ease-curtain),
-    opacity 400ms linear;
-  will-change: transform;
-}
-
-.loader-curtain[data-leaving='true'] {
-  transform: translate3d(0, -100%, 0);
-}
-
-.loader-curtain [data-loader-inner] {
-  transition: transform 820ms var(--ease-curtain);
-}
-
-.loader-curtain[data-leaving='true'] [data-loader-inner] {
-  transform: translate3d(0, 16%, 0);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .spotlight-card:hover {
     transform: none;
   }
 
-  .loader-curtain,
-  .loader-curtain [data-loader-inner] {
-    transition: none;
-  }
-
-  .magnetic-surface {
-    transform: none !important;
-    transition: none;
-  }
-
-  .tilt-glare,
   .btn::before {
     display: none;
   }

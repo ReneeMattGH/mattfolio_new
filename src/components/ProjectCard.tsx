@@ -119,8 +119,6 @@ export function ProjectCard({ project, index, onOpen }: CardProps) {
 
   return (
     <article
-      data-cursor
-      data-cursor-label="View"
       style={{ animationDelay: `${Math.min(index, 7) * 55}ms` }}
       className="card-enter group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition-[border-color,transform,box-shadow] duration-500 ease-smooth hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_30px_60px_-36px_rgba(0,0,0,0.95)]"
     >
@@ -229,8 +227,6 @@ export function FlagshipCard({ project, index, onOpen }: CardProps) {
 
   return (
     <article
-      data-cursor
-      data-cursor-label="View"
       style={{ animationDelay: `${Math.min(index, 7) * 55}ms` }}
       className="card-enter group relative overflow-hidden rounded-card border border-line bg-surface transition-[border-color,box-shadow] duration-500 ease-smooth hover:border-line-strong hover:shadow-[0_36px_80px_-44px_rgba(0,0,0,0.95)]"
     >

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, SquareTerminal } from 'lucide-react';
 import { Component, lazy, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
-import { Magnetic } from '../components/Magnetic';
 import { StatusStamp } from '../components/StatusStamp';
 import { Ticker } from '../components/Ticker';
 import { profile } from '../data/profile';
@@ -78,11 +77,10 @@ function SceneFallback() {
 }
 
 interface HeroProps {
-  start: boolean;
   onOpenTerminal: () => void;
 }
 
-export function Hero({ start, onOpenTerminal }: HeroProps) {
+export function Hero({ onOpenTerminal }: HeroProps) {
   const root = useRef<HTMLElement>(null);
   const lightRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
@@ -93,7 +91,6 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
     !touch && (typeof navigator === 'undefined' || (navigator.hardwareConcurrency ?? 8) > 4);
 
   useEffect(() => {
-    if (!start) return;
     const section = root.current;
     if (!section) return;
 
@@ -139,7 +136,7 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
     }, section);
 
     return () => context.revert();
-  }, [start, reduced]);
+  }, [reduced]);
 
   useEffect(() => {
     if (touch || reduced) return;
@@ -289,18 +286,14 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
             </div>
 
             <div data-hero-fade className="mt-9 flex flex-wrap items-center gap-3 md:mt-10">
-              <Magnetic strength={19} tilt={11} radius={58}>
-                <a href="#projects" className="btn btn-primary !px-6">
-                  See selected work
-                  <ArrowRight size={15} className="btn-arrow" />
-                </a>
-              </Magnetic>
-              <Magnetic strength={15} tilt={9} radius={52}>
-                <a href={profile.resumeUrl} download className="btn btn-outline">
-                  Download resume
-                  <Download size={14} className="opacity-70" />
-                </a>
-              </Magnetic>
+              <a href="#projects" className="btn btn-primary !px-6">
+                See selected work
+                <ArrowRight size={15} className="btn-arrow" />
+              </a>
+              <a href={profile.resumeUrl} download className="btn btn-outline">
+                Download resume
+                <Download size={14} className="opacity-70" />
+              </a>
               <button
                 type="button"
                 onClick={onOpenTerminal}
