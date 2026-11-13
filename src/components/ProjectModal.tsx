@@ -179,6 +179,19 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 </div>
 
+                {project.video ? (
+                  <div className="mt-4 overflow-hidden rounded-[10px] border border-line bg-black">
+                    <video
+                      src={project.video}
+                      controls
+                      preload="none"
+                      playsInline
+                      aria-label={`${project.title} demo video`}
+                      className="aspect-video w-full"
+                    />
+                  </div>
+                ) : null}
+
                 <div className="mt-8 grid gap-0 md:grid-cols-2 md:gap-x-10">
                   <ModalSection title="Problem" className="md:col-span-2">
                     {project.problem}

@@ -88,6 +88,7 @@ export interface Project {
   metrics?: ProjectMetric[];
   codeUrl?: string;
   liveUrl?: string;
+  video?: string;
   image?: string;
   preview: PreviewKind;
   flagship?: boolean;
