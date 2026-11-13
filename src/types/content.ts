@@ -108,6 +108,14 @@ export interface Achievement {
   highlight?: boolean;
 }
 
+export interface Testimonial {
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  href?: string;
+}
+
 export type SkillIconKey = 'blocks' | 'code' | 'globe' | 'brain' | 'wrench';
 
 export interface SkillGroup {

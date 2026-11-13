@@ -16,6 +16,7 @@ import { GitHubSection } from './sections/GitHubSection';
 import { Hero } from './sections/Hero';
 import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
+import { Testimonials } from './sections/Testimonials';
 import { gsap, ScrollTrigger } from './lib/gsap';
 import { getLenis, handleAnchorClick, scrollToTarget, setLenis } from './lib/scroll';
 import { requestProjectFilter, requestProjectOpen } from './lib/siteEvents';
@@ -171,6 +172,7 @@ export default function App() {
           <Experience />
           <Projects />
           <Achievements />
+          <Testimonials />
           <Skills />
           <GitHubSection />
           <Contact />
