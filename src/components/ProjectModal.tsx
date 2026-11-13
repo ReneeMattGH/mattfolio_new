@@ -157,6 +157,22 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   {project.summary}
                 </p>
 
+                {project.metrics?.length ? (
+                  <dl className="mt-6 flex flex-wrap gap-px overflow-hidden rounded-[10px] border border-line bg-line">
+                    {project.metrics.map((metric) => (
+                      <div
+                        key={metric.label}
+                        className="min-w-[120px] flex-1 bg-surface px-4 py-4"
+                      >
+                        <dt className="mono-label">{metric.label}</dt>
+                        <dd className="mt-1 text-[clamp(1.35rem,2.4vw,1.8rem)] font-semibold leading-none tracking-[-0.03em] text-ink">
+                          {metric.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
+
                 <div className="mt-7 overflow-hidden rounded-[10px] border border-line">
                   <div className="aspect-[16/9]">
                     <ProjectPreview project={project} />

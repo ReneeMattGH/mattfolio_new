@@ -45,7 +45,15 @@ export function Projects() {
       ? projects
       : projects.filter((project) => project.categories.includes(filter));
   const flagship = visible.find((project) => project.flagship);
-  const rest = visible.filter((project) => !project.flagship);
+  const rest = visible
+    .filter((project) => !project.flagship)
+    .map((project, index) => ({ project, index }))
+    .sort(
+      (a, b) =>
+        Number(Boolean(b.project.badge)) - Number(Boolean(a.project.badge)) ||
+        a.index - b.index,
+    )
+    .map(({ project }) => project);
 
   return (
     <section id="projects" className="section">

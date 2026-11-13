@@ -69,6 +69,11 @@ export interface Role {
   tags: string[];
 }
 
+export interface ProjectMetric {
+  value: string;
+  label: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -80,6 +85,7 @@ export interface Project {
   role: string;
   outcome: string;
   stack: string[];
+  metrics?: ProjectMetric[];
   codeUrl?: string;
   liveUrl?: string;
   image?: string;
