@@ -16,7 +16,7 @@ export const profile: Profile = {
   email: 'renee.matthew04@gmail.com',
   siteUrl: SITE_URL,
   resumeUrl: '/resume.pdf',
-  bio: 'Third-year Computer Science student at Chennai Institute of Technology, building at the intersection of AI, blockchain and crypto. Hands-on with real-time AI, smart contracts and full-stack products, a multi-time hackathon finalist and winner who also contributes to open source.',
+  bio: 'Winner of ETHGlobal Mumbai with Arkiv, top four at the Bitcoin Global Hackathon, and a two-time Solana runner-up. I build smart contracts, payment rails and real-time AI products end to end — currently HAVX, a blockchain IDE, plus HAVXWallet. Finishing a Computer Science degree at Chennai Institute of Technology.',
   proof: [
     'ETHGlobal Mumbai — 1st place',
     'Top 4 — Bitcoin Global Hackathon',

@@ -273,9 +273,7 @@ export function Hero({ start, onOpenTerminal }: HeroProps) {
               data-hero-fade
               className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2.5"
             >
-              <span className="kicker text-muted">Known as Matt</span>
-              <span aria-hidden="true" className="h-px w-9 bg-line-strong" />
-              <span className="kicker text-faint">{profile.location}</span>
+              <span className="kicker text-muted">{profile.location}</span>
               <span aria-hidden="true" className="hidden h-px w-9 bg-line-strong sm:block" />
               <span className="kicker hidden text-faint sm:block">Open source contributor</span>
             </div>
